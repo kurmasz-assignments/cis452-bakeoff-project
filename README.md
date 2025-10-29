@@ -43,18 +43,18 @@ To bake a recipe, complete the following steps:
 Release the resources from one step before proceeding to the next (e.g., release the tools before acquiring the oven).
 
 * Simulate "using" the pantry and refrigerator by updating a shared data structure that counts the amount of each ingredient used.
-* Simulate "using" the other resources by simply updating a shared data structure that counts usage and printing a log message (i.e., acquire the resource, update the usage count, print a message, then release).
+* Simulate "using" the other resources by simply printing a log message (i.e., acquire the resource, print a message, then release).
 
 **IMPORTANT**: You need to think carefully about how you manage the ingredient list for the refrigerators: Using a counting semaphore and a single ingredient list won't work, because then you might have two threads simultaneously updating the refrigerator's ingredients at the same time. However, don't just add a second semaphore for the ingredient list. If you do that, you will lose the benefit of having two refrigerators. Addressing this constraint will require some thought. Feel free to save it for last.
+
 
 ## The Analysis
 
 After all bakers have completed all their work, print a report showing
-1. The expected amount of resource usage (ingredients consumed, and usage of each shared resource), and 
-2. The actual amount of resource usage.
+1. The expected amount of ingredient usage, and 
+2. The actual amount of ingredients used.
 
-For tools, the expected usage is once per batch made. Thus, it should be equal to `bakers * num_batches * num_recipes`.
-Comparing this value to the final value in the shared data will tell you whether the shared data was corrupted by concurrent access. 
+Comparing the expected and acutal values in the shared data will tell you whether the shared data was corrupted by concurrent access. 
 
 Direct the usage messages to a log file. Direct the final report to the standard output. 
 
